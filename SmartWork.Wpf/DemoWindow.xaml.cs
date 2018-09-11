@@ -3,11 +3,11 @@
 namespace SmartWork.Wpf
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// DemoWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DemoWindow : Window
     {
-        public MainWindow()
+        public DemoWindow()
         {
             InitializeComponent();
         }
