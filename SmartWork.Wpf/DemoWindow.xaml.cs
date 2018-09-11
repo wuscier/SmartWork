@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SmartWork.Wpf.Demo;
+using System.Windows;
 
 namespace SmartWork.Wpf
 {
@@ -10,6 +11,19 @@ namespace SmartWork.Wpf
         public DemoWindow()
         {
             InitializeComponent();
+
+            LocalizeUI();
+        }
+
+        private void LocalizeUI()
+        {
+            btnGotoDragAndDropDemo.Content = "拖放示例";
+        }
+
+        private void btnGotoDragAndDropDemo_Click(object sender, RoutedEventArgs e)
+        {
+            gridContent.Children.Clear();
+            gridContent.Children.Add(new DragAndDrop());
         }
     }
 }

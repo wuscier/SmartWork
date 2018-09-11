@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="DemoWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ListBox>
+            <Button x:Name="btnGotoDragAndDropDemo" Click="btnGotoDragAndDropDemo_Click"></Button>
+        </ListBox>
+
+        <Grid Grid.Column="1" x:Name="gridContent"></Grid>
     </Grid>
 </Window>
