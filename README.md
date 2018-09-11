@@ -12,4 +12,24 @@ a smart tool which helps to do dirty work and save you a lot of time
 # 3. Extensible to your customized smart tasks
   * Available to submit your own task with batch files 
   
+# Milestone 1
+Finish first version of SmartWork with code-behind coding style
+
+# Milestone 2
+Rewrite project with MVVM pattern
+
+# Milestone 3
+Rewirte project with functional reactive programming
+
+# Technologies involved
+  * WPF
+  * SQLite
+  * Windows Batch Scripting
+  * Prism
+  * ReactiveUI
+  * Chromium Embedded Framework
+  * Windows API
+  * ...
+  
+  
 # MUCH MORE TO COME and you're welcome to contribute your ideas and work
