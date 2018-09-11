@@ -7,5 +7,9 @@ a smart tool which helps to do dirty work and save you a lot of time
   * Support fuzzy lookup.
   
 # 2. Get your work environment ready with just a click
+  * Tired of doing the boring things, like launch a web browser and search something, go to a specific directory, shutdown the computer, etc. With SmartWork you can accomplish these with just a click.
+  
 # 3. Extensible to your customized smart tasks
+  * Available to submit your own task with batch files 
+  
 # MUCH MORE TO COME and you're welcome to contribute your ideas and work
