@@ -67,6 +67,11 @@
     </Compile>
     <Compile Include="AppVariables.cs" />
     <Compile Include="CmdRunner.cs" />
+    <Compile Include="Control\DataPager.xaml.cs">
+      <DependentUpon>DataPager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PageChangedEventArgs.cs" />
+    <Compile Include="Control\PageChangingEventArgs.cs" />
     <Compile Include="SaveJob.xaml.cs">
       <DependentUpon>SaveJob.xaml</DependentUpon>
     </Compile>
@@ -78,6 +83,10 @@
     <Compile Include="Model\Job.cs" />
     <Compile Include="SQLite\SqliteDataAccess.cs" />
     <Page Include="AddJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\DataPager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
