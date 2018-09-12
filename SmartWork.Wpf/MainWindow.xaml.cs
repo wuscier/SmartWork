@@ -10,6 +10,19 @@ namespace SmartWork.Wpf
         public MainWindow()
         {
             InitializeComponent();
+
+            LocalizeUI();
+        }
+
+        private void LocalizeUI()
+        {
+            btnNewJob.Content = "新建任务";
+        }
+
+        private void btnNewJob_Click(object sender, RoutedEventArgs e)
+        {
+            gridContent.Children.Clear();
+            gridContent.Children.Add(new AddJob());
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using SmartWork.Wpf.Demo;
-using System.Windows;
+﻿using System.Windows;
 
 namespace SmartWork.Wpf
 {

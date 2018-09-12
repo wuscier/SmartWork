@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace SmartWork.Wpf.Demo
+namespace SmartWork.Wpf
 {
     /// <summary>
     /// Circle.xaml 的交互逻辑

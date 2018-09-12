@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 
-namespace SmartWork.Wpf.SQLite
+namespace SmartWork.Wpf
 {
     public class SqliteDataAccess
     {
@@ -19,12 +19,15 @@ namespace SmartWork.Wpf.SQLite
             }
         }
 
-        public static void SaveJob(Job job)
+        public static int SaveJob(Job job)
         {
+            int result = 0;
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Job (Name, CreateTime) values (@Name,@CreateTime)", job);
+                result = cnn.Execute("insert into Job (Description, Script) values (@Description,@Script)", job);
             }
+
+            return result;
         }
 
         private static string LoadConnectionString(string id = "Default")

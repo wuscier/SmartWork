@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace SmartWork.Wpf.Demo
+namespace SmartWork.Wpf
 {
     /// <summary>
     /// DragAndDrop.xaml 的交互逻辑

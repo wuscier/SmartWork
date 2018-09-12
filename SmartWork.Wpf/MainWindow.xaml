@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:SmartWork.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="gridContainer" AllowDrop="True">
-        
+    <Grid x:Name="gridContainer">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ListBox>
+            <Button x:Name="btnNewJob" Click="btnNewJob_Click"></Button>
+        </ListBox>
+
+        <Grid Grid.Column="1" x:Name="gridContent"></Grid>
+
     </Grid>
 </Window>
