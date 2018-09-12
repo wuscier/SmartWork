@@ -14,6 +14,7 @@
 
         <ListBox>
             <Button x:Name="btnNewJob" Click="btnNewJob_Click"></Button>
+            <Button x:Name="btnAllJobs" Click="btnAllJobs_Click"></Button>
         </ListBox>
 
         <Grid Grid.Column="1" x:Name="gridContent"></Grid>

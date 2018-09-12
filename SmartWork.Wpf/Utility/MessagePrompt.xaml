@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartWork.Wpf"
         mc:Ignorable="d"
-        Title="MessagePrompt" WindowStyle="None" Height="100" Width="600" WindowStartupLocation="CenterOwner" BorderBrush="Black" BorderThickness="2">
+        Title="MessagePrompt" WindowStyle="None" Height="100" Width="600" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>

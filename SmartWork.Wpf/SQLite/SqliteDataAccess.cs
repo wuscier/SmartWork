@@ -13,9 +13,39 @@ namespace SmartWork.Wpf
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Job>("select * from Job", new DynamicParameters());
+                var output = cnn.Query<Job>("select * from Job");
 
                 return output.ToList();
+            }
+        }
+
+        public static List<Job> LoadJobs(int limit)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Job>($"select * from Job LIMIT {limit}");
+
+                return output.ToList();
+            }
+        }
+
+        public static List<Job> LoadJobs(int limit, int offset)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Job>($"select * from Job LIMIT {limit} OFFSET {offset}");
+
+                return output.ToList();
+            }
+        }
+
+        public static int CountJobs()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<int>("select count(Id) from Job", new DynamicParameters());
+
+                return output.FirstOrDefault();
             }
         }
 

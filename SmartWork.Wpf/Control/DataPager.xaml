@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartWork.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="500">
+             d:DesignHeight="30" d:DesignWidth="500"
+             Background="#FFF0F0F0"
+             x:Name="userControl">
     <UserControl.Resources>
         <Style x:Key="NormalTextBlockStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="TextWrapping" Value="NoWrap"/>

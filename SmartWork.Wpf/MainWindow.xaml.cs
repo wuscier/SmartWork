@@ -17,12 +17,19 @@ namespace SmartWork.Wpf
         private void LocalizeUI()
         {
             btnNewJob.Content = "新建任务";
+            btnAllJobs.Content = "查看任务";
         }
 
         private void btnNewJob_Click(object sender, RoutedEventArgs e)
         {
             gridContent.Children.Clear();
             gridContent.Children.Add(new AddJob());
+        }
+
+        private void btnAllJobs_Click(object sender, RoutedEventArgs e)
+        {
+            gridContent.Children.Clear();
+            gridContent.Children.Add(new AllJobs());
         }
     }
 }
