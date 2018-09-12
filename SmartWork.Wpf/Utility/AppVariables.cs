@@ -41,5 +41,7 @@ namespace SmartWork.Wpf
         }
 
         public const string VBSSCRIPT = "Set ws = CreateObject(\"Wscript.Shell\")\r\nws.run \"cmd /c {0}\",vbhide";
+
+        public static MainWindow MainWindow;
     }
 }

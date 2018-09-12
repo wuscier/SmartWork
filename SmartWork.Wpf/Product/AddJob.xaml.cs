@@ -17,15 +17,22 @@ namespace SmartWork.Wpf
             LocalizeUI();
         }
 
+        public AddJob(string description, string script):this()
+        {
+            txtJobDescription.Text = description;
+            txtJobScript.Text = script;
+        }
+
         private void LocalizeUI()
         {
+            tbJobDescription.Text = "任务描述";
             btnRunJobScript.Content = "运行任务";
             btnSaveJob.Content = "保存任务";
         }
 
         private async void btnRunJobScript_Click(object sender, RoutedEventArgs e)
         {
-            string jobScript = tbJobScript.Text.Trim();
+            string jobScript = txtJobScript.Text.Trim();
 
             if (string.IsNullOrEmpty(jobScript))
             {
@@ -66,7 +73,7 @@ namespace SmartWork.Wpf
 
         private void btnSaveJob_Click(object sender, RoutedEventArgs e)
         {
-            string jobScript = tbJobScript.Text.Trim();
+            string jobScript = txtJobScript.Text.Trim();
 
             if (string.IsNullOrEmpty(jobScript))
             {
@@ -74,10 +81,36 @@ namespace SmartWork.Wpf
                 return;
             }
 
+            string jobDescription = txtJobDescription.Text.Trim();
+            if (string.IsNullOrEmpty(jobDescription))
+            {
+                Application.Current.MainWindow.Prompt("请输入任务描述！", MessageType.Warning);
+                return;
+            }
 
-            SaveJob saveJob = new SaveJob(jobScript);
-            saveJob.Owner = Application.Current.MainWindow;
-            saveJob.ShowDialog();
+
+            try
+            {
+                int saveJobResult = SqliteDataAccess.SaveJob(new Job()
+                {
+                    Description = jobDescription,
+                    Script = jobScript
+                });
+
+                if (saveJobResult > 0)
+                {
+                    Application.Current.MainWindow.Prompt("保存成功！", MessageType.Info);
+                }
+                else
+                {
+                    Application.Current.MainWindow.Prompt("保存失败！", MessageType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainWindow.Prompt(ex.Message, MessageType.Error);
+            }
+
         }
     }
 }

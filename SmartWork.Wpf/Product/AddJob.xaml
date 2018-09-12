@@ -8,18 +8,24 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="tbJobScript" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"></TextBox>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="tbJobDescription"></TextBlock>
+            <TextBox x:Name="txtJobDescription"></TextBox>
+        </StackPanel>
+        
+        <TextBox Grid.Row="1" x:Name="txtJobScript" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"></TextBox>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="btnRunJobScript" Click="btnRunJobScript_Click" Margin="5"></Button>
             <Button x:Name="btnSaveJob" Click="btnSaveJob_Click" Margin="5"></Button>
         </StackPanel>
 
-        <TextBox x:Name="tbRunJobScriptResult" Grid.Row="2"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"></TextBox>
+        <TextBox x:Name="tbRunJobScriptResult" Grid.Row="3"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"></TextBox>
     </Grid>
 </UserControl>

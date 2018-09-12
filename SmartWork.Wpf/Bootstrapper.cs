@@ -18,7 +18,8 @@ namespace SmartWork.Wpf
 
             if (startupWindow == null)
             {
-                startupWindow = new MainWindow();
+                AppVariables.MainWindow = new MainWindow();
+                startupWindow = AppVariables.MainWindow;
             }
 
             Bootstrapper bootstrapper = new Bootstrapper();

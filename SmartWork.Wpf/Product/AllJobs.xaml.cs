@@ -62,14 +62,14 @@ namespace SmartWork.Wpf
 
         private void btnDeleteJob_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-
-            MessageBox.Show(btn.Tag.ToString());
         }
 
         private void btnEditJob_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            Job job = btn.DataContext as Job;
 
+            AppVariables.MainWindow?.NavigateTo("新建任务", job);
         }
     }
 }

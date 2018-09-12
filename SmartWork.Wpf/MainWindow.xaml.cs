@@ -31,5 +31,14 @@ namespace SmartWork.Wpf
             gridContent.Children.Clear();
             gridContent.Children.Add(new AllJobs());
         }
+
+        public void NavigateTo(string menu, Job job)
+        {
+            if (menu == "新建任务")
+            {
+                gridContent.Children.Clear();
+                gridContent.Children.Add(new AddJob(job.Description, job.Script));
+            }
+        }
     }
 }

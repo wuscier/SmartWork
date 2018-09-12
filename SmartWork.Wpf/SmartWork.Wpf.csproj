@@ -62,6 +62,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utility\DialogPrompt.xaml.cs">
+      <DependentUpon>DialogPrompt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Product\EditJob.xaml.cs">
+      <DependentUpon>EditJob.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Product\AllJobs.xaml.cs">
       <DependentUpon>AllJobs.xaml</DependentUpon>
     </Compile>
@@ -85,6 +91,14 @@
     <Compile Include="Utility\MessageType.cs" />
     <Compile Include="Model\Job.cs" />
     <Compile Include="SQLite\SqliteDataAccess.cs" />
+    <Page Include="Utility\DialogPrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Product\EditJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Product\AllJobs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
