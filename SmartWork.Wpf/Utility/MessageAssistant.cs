@@ -10,5 +10,12 @@ namespace SmartWork.Wpf
             messagePrompt.Owner = parent;
             messagePrompt.Show();
         }
+
+        public static bool? ShowDialog(this Window parent, string dialogMsg)
+        {
+            DialogPrompt dialogPrompt = new DialogPrompt(dialogMsg);
+            dialogPrompt.Owner = parent;
+            return dialogPrompt.ShowDialog();
+        }
     }
 }

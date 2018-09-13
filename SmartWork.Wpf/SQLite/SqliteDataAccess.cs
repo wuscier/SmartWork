@@ -43,7 +43,7 @@ namespace SmartWork.Wpf
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<int>("select count(Id) from Job", new DynamicParameters());
+                var output = cnn.Query<int>("select count(Id) from Job");
 
                 return output.FirstOrDefault();
             }
@@ -67,6 +67,18 @@ namespace SmartWork.Wpf
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 result = cnn.Execute("update Job set Description = @Description, Script = @Script where Id = @Id", job);
+            }
+
+            return result;
+        }
+
+        public static int DeleteJob(Job job)
+        {
+            int result = 0;
+
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                result = cnn.Execute("delete from Job where Id = @Id", job);
             }
 
             return result;

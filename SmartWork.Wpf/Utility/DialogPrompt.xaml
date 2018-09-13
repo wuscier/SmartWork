@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartWork.Wpf"
         mc:Ignorable="d"
-        Title="DialogPrompt" Height="450" Width="800">
+        Title="DialogPrompt" Height="450" Width="800" WindowStartupLocation="CenterOwner">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="tbDialogMessage" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0" TextWrapping="Wrap"></TextBlock>
         
+        <Button x:Name="btnYes" Grid.Row="1" HorizontalAlignment="Center" Margin="10" Click="btnYes_Click"></Button>
+        <Button x:Name="btnNo" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="10" Click="btnNo_Click"></Button>
     </Grid>
 </Window>

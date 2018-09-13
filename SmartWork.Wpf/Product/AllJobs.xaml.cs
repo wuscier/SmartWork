@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SmartWork.Wpf
 {
@@ -32,9 +22,9 @@ namespace SmartWork.Wpf
 
         }
 
-        private void DataPager_PageChanging(object sender, PageChangingEventArgs e)
+        private bool GotoPage(int pageNum)
         {
-            int offset = (e.NewPageIndex - 1) * dataPager.PageSize;
+            int offset = (pageNum - 1) * dataPager.PageSize;
 
             var bak = dataGridAllJobs.ItemsSource;
 
@@ -42,12 +32,23 @@ namespace SmartWork.Wpf
             {
                 List<Job> jobs = SqliteDataAccess.LoadJobs(dataPager.PageSize, offset);
                 dataGridAllJobs.ItemsSource = jobs;
+
+                return true;
             }
             catch (Exception ex)
             {
-                e.IsCancel = true;
                 Application.Current.MainWindow.Prompt(ex.Message, MessageType.Error);
                 dataGridAllJobs.ItemsSource = bak;
+
+                return false;
+            }
+        }
+
+        private void DataPager_PageChanging(object sender, PageChangingEventArgs e)
+        {
+            if (!GotoPage(e.NewPageIndex))
+            {
+                e.IsCancel = true;
             }
         }
 
@@ -62,6 +63,36 @@ namespace SmartWork.Wpf
 
         private void btnDeleteJob_Click(object sender, RoutedEventArgs e)
         {
+            bool? dialogResult = Application.Current.MainWindow.ShowDialog("确定删除这项任务？");
+
+            if (dialogResult.HasValue&&dialogResult.Value)
+            {
+                Button btn = sender as Button;
+                Job job = btn.DataContext as Job;
+
+                try
+                {
+                    int result = SqliteDataAccess.DeleteJob(job);
+
+                    if (result > 0)
+                    {
+                        Application.Current.MainWindow.Prompt("删除成功！", MessageType.Info);
+
+                        GotoPage(dataPager.PageIndex);
+
+                        dataPager.TotalCount = SqliteDataAccess.CountJobs();
+                    }
+                    else
+                    {
+                        Application.Current.MainWindow.Prompt("删除失败！", MessageType.Error);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Application.Current.MainWindow.Prompt(ex.Message, MessageType.Error);
+                }
+            }
         }
 
         private void btnEditJob_Click(object sender, RoutedEventArgs e)
