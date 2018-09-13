@@ -60,6 +60,18 @@ namespace SmartWork.Wpf
             return result;
         }
 
+        public static int UpdateJob(Job job)
+        {
+            int result = 0;
+
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                result = cnn.Execute("update Job set Description = @Description, Script = @Script where Id = @Id", job);
+            }
+
+            return result;
+        }
+
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

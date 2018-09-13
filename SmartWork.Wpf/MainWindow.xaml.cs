@@ -37,7 +37,7 @@ namespace SmartWork.Wpf
             if (menu == "新建任务")
             {
                 gridContent.Children.Clear();
-                gridContent.Children.Add(new AddJob(job.Description, job.Script));
+                gridContent.Children.Add(new AddJob(job));
             }
         }
     }

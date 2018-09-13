@@ -10,6 +10,8 @@ namespace SmartWork.Wpf
     /// </summary>
     public partial class AddJob : UserControl
     {
+        private int _jobId = 0;
+
         public AddJob()
         {
             InitializeComponent();
@@ -17,10 +19,11 @@ namespace SmartWork.Wpf
             LocalizeUI();
         }
 
-        public AddJob(string description, string script):this()
+        public AddJob(Job job):this()
         {
-            txtJobDescription.Text = description;
-            txtJobScript.Text = script;
+            _jobId = job.Id;
+            txtJobDescription.Text = job.Description;
+            txtJobScript.Text = job.Script;
         }
 
         private void LocalizeUI()
@@ -91,19 +94,40 @@ namespace SmartWork.Wpf
 
             try
             {
-                int saveJobResult = SqliteDataAccess.SaveJob(new Job()
+                if (_jobId >0)
                 {
-                    Description = jobDescription,
-                    Script = jobScript
-                });
+                    int updateJobResult = SqliteDataAccess.UpdateJob(new Job()
+                    {
+                        Id = _jobId,
+                        Description = jobDescription,
+                        Script = jobScript
+                    });
 
-                if (saveJobResult > 0)
-                {
-                    Application.Current.MainWindow.Prompt("保存成功！", MessageType.Info);
+                    if (updateJobResult > 0)
+                    {
+                        Application.Current.MainWindow.Prompt("更新成功！", MessageType.Info);
+                    }
+                    else
+                    {
+                        Application.Current.MainWindow.Prompt("更新失败！", MessageType.Error);
+                    }
                 }
                 else
                 {
-                    Application.Current.MainWindow.Prompt("保存失败！", MessageType.Error);
+                    int saveJobResult = SqliteDataAccess.SaveJob(new Job()
+                    {
+                        Description = jobDescription,
+                        Script = jobScript
+                    });
+
+                    if (saveJobResult > 0)
+                    {
+                        Application.Current.MainWindow.Prompt("保存成功！", MessageType.Info);
+                    }
+                    else
+                    {
+                        Application.Current.MainWindow.Prompt("保存失败！", MessageType.Error);
+                    }
                 }
             }
             catch (Exception ex)
