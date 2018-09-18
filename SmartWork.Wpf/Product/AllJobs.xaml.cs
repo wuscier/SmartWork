@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,11 +11,22 @@ namespace SmartWork.Wpf
     /// </summary>
     public partial class AllJobs : UserControl
     {
+        private string _deleteSelectedJobsTips = "删除选中的{0}项任务";
+
         public AllJobs()
         {
             InitializeComponent();
+
+            LocalizeUI();
+
             dataPager.PageChanging += DataPager_PageChanging;
             dataPager.PageChanged += DataPager_PageChanged;
+        }
+
+        private void LocalizeUI()
+        {
+            btnDeleteAllJobs.Content = "删除所有任务";
+            btnDeleteSelectedJobs.Content = string.Format(_deleteSelectedJobsTips, dataGridAllJobs.SelectedItems.Count);
         }
 
         private void DataPager_PageChanged(object sender, PageChangedEventArgs e)
@@ -42,6 +54,13 @@ namespace SmartWork.Wpf
 
                 return false;
             }
+        }
+
+        private void RefreshDataGrid()
+        {
+            GotoPage(dataPager.PageIndex);
+
+            dataPager.TotalCount = SqliteDataAccess.CountJobs();
         }
 
         private void DataPager_PageChanging(object sender, PageChangingEventArgs e)
@@ -78,9 +97,7 @@ namespace SmartWork.Wpf
                     {
                         Application.Current.MainWindow.Prompt("删除成功！", MessageType.Info);
 
-                        GotoPage(dataPager.PageIndex);
-
-                        dataPager.TotalCount = SqliteDataAccess.CountJobs();
+                        RefreshDataGrid();
                     }
                     else
                     {
@@ -101,6 +118,30 @@ namespace SmartWork.Wpf
             Job job = btn.DataContext as Job;
 
             AppVariables.MainWindow?.NavigateTo("新建任务", job);
+        }
+
+        private void dataGridAllJobs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnDeleteSelectedJobs.Content = string.Format(_deleteSelectedJobsTips, dataGridAllJobs.SelectedItems.Count);
+        }
+
+        private void btnDeleteSelectedJobs_Click(object sender, RoutedEventArgs e)
+        {
+            dataGridAllJobs.SelectedItems.Cast<Job>().ToList().ForEach(job =>
+            {
+                SqliteDataAccess.DeleteJob(job);
+            });
+
+            RefreshDataGrid();
+        }
+
+        private void btnDeleteAllJobs_Click(object sender, RoutedEventArgs e)
+        {
+            int deletedCount = SqliteDataAccess.DeleteAllJobs();
+
+            Application.Current.MainWindow.Prompt($"共删除了{deletedCount}条任务！", MessageType.Error);
+
+            RefreshDataGrid();
         }
     }
 }

@@ -84,6 +84,18 @@ namespace SmartWork.Wpf
             return result;
         }
 
+        public static int DeleteAllJobs()
+        {
+            int result = 0;
+
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                result = cnn.Execute("delete from Job");
+            }
+
+            return result;
+        }
+
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
