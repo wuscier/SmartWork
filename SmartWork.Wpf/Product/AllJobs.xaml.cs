@@ -25,6 +25,7 @@ namespace SmartWork.Wpf
 
         private void LocalizeUI()
         {
+            btnSearch.Content = "搜索";
             btnDeleteAllJobs.Content = "删除所有任务";
             btnDeleteSelectedJobs.Content = string.Format(_deleteSelectedJobsTips, dataGridAllJobs.SelectedItems.Count);
         }
@@ -153,6 +154,21 @@ namespace SmartWork.Wpf
             Application.Current.MainWindow.Prompt($"共删除了{deletedCount}条任务！", MessageType.Info);
 
             RefreshDataGrid();
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string searchKey = txtSearchJobKeys.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchKey))
+            {
+                Application.Current.MainWindow.Prompt("请输入搜索关键字！多个之间用空格分隔。", MessageType.Warning);
+                return;
+            }
+
+            string[] keys = searchKey.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+
         }
     }
 }

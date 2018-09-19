@@ -29,10 +29,17 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="btnDeleteSelectedJobs" Margin="5" Click="btnDeleteSelectedJobs_Click"></Button>
-            <Button x:Name="btnDeleteAllJobs" Margin="5" Click="btnDeleteAllJobs_Click"></Button>
-        </StackPanel>
+        <DockPanel Margin="5">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <Button x:Name="btnDeleteSelectedJobs" Margin="5" Click="btnDeleteSelectedJobs_Click"></Button>
+                <Button x:Name="btnDeleteAllJobs" Margin="5" Click="btnDeleteAllJobs_Click" ></Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtSearchJobKeys" Margin="5" Width="200"></TextBox>
+                <Button x:Name="btnSearch" Margin="5" Click="btnSearch_Click"></Button>
+            </StackPanel>
+        </DockPanel>
         <DataGrid x:Name="dataGridAllJobs" Margin="10"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
