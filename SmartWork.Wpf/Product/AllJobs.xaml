@@ -44,17 +44,26 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="auto" Header="任务描述" Binding="{Binding Description}"></DataGridTextColumn>
                 <DataGridTextColumn Width="*" Header="任务脚本" Binding="{Binding Script}"></DataGridTextColumn>
+
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnEditJob" Tag="{Binding Id}" Content="编辑" Click="btnEditJob_Click"></Button>
+                            <Button x:Name="btnExecuteJob" Content="执行" Click="btnExecuteJob_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnEditJob" Content="编辑" Click="btnEditJob_Click"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnDeleteJob" Tag="{Binding Id}" Content="删除" Click="btnDeleteJob_Click"></Button>
+                            <Button x:Name="btnDeleteJob" Content="删除" Click="btnDeleteJob_Click"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

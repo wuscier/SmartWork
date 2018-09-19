@@ -112,6 +112,17 @@ namespace SmartWork.Wpf
             }
         }
 
+        private async void btnExecuteJob_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Job job = btn.DataContext as Job;
+
+            string runJobResult = await JobRunner.Run(job.Script);
+
+            Application.Current.MainWindow.Prompt(runJobResult, MessageType.Info);
+        }
+
+
         private void btnEditJob_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -139,7 +150,7 @@ namespace SmartWork.Wpf
         {
             int deletedCount = SqliteDataAccess.DeleteAllJobs();
 
-            Application.Current.MainWindow.Prompt($"共删除了{deletedCount}条任务！", MessageType.Error);
+            Application.Current.MainWindow.Prompt($"共删除了{deletedCount}条任务！", MessageType.Info);
 
             RefreshDataGrid();
         }

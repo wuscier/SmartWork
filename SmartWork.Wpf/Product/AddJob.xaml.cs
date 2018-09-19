@@ -43,35 +43,9 @@ namespace SmartWork.Wpf
                 return;
             }
 
+            string runJobResult = await JobRunner.Run(jobScript);
 
-            string dateTime = DateTime.Now.ToString("HHmmssffff");
-
-            string batchFileName = $"{dateTime}.bat";
-            string vbsFileName = $"{dateTime}.vbs";
-
-            string fullBatchFileName = Path.Combine(AppVariables.TempPath, batchFileName);
-            string fullVbsFileName = Path.Combine(AppVariables.TempPath, vbsFileName);
-
-
-            string vbsContent = string.Format(AppVariables.VBSSCRIPT, batchFileName);
-
-            try
-            {
-                File.WriteAllText(fullBatchFileName, jobScript);
-
-                File.WriteAllText(fullVbsFileName, vbsContent);
-
-                string output = await CmdRunner.Run(vbsFileName);
-                tbRunJobScriptResult.Text += output;
-
-                //File.Delete(fullBatchFileName);
-                //File.Delete(fullVbsFileName);
-
-            }
-            catch (Exception ex)
-            {
-                Application.Current.MainWindow.Prompt(ex.Message, MessageType.Error);
-            }
+            tbRunJobScriptResult.Text += runJobResult;
         }
 
         private void btnSaveJob_Click(object sender, RoutedEventArgs e)
